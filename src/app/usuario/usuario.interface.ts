@@ -5,5 +5,5 @@ export interface IUsuario {
     password : string;
     hobbies : Array<string>;
     admin : boolean;
-    idUsuario : number | undefined;
+    idUsuario? : number;
 }
