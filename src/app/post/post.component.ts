@@ -14,6 +14,7 @@ import { IUsuario } from '../usuario/usuario.interface';
 })
 export class PostComponent implements OnInit{
 
+  titutlo: string;
   pais : string;
   provincia : string;
   ciudad : string;
@@ -21,7 +22,7 @@ export class PostComponent implements OnInit{
   descripcion : string;
   creador : IUsuario;
 
-  constructor(private dataService: dataService) { this.pais = "", this.provincia = "", this.ciudad = "", this.actividad = [], this.descripcion = "", this.creador = {nombre: "", correo: "", edad: 0, password: "", hobbies: [], admin: false}; }
+  constructor(private dataService: dataService) {this.titutlo = "", this.pais = "", this.provincia = "", this.ciudad = "", this.actividad = [], this.descripcion = "", this.creador = {nombre: "", correo: "", edad: 0, password: "", hobbies: [], admin: false}; }
 
   ngOnInit(): void {
       
