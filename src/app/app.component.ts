@@ -13,4 +13,5 @@ import { AdministracionComponent } from './administracion/administracion.compone
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  title = 'localME';
 }
