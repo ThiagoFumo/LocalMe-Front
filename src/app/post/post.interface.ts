@@ -1,9 +1,11 @@
 import { IUsuario } from "../usuario/usuario.interface";
 
 export interface IPost {
-    titulo : string;
-    contenido : string;
-    fecha : Date;
-    autor : IUsuario;
+    pais : string;
+    provincia : string;
+    ciudad : string;
+    actividad : Array<string>;
+    descripcion : string;
+    creador : IUsuario;
     idPost? : number;
 }

@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { IUsuario } from '../usuario/usuario.interface';
+import { dataService } from '../services/services.component';
 
 @Component({
   selector: 'app-registrarse',
@@ -24,13 +25,12 @@ export class RegistrarseComponent {
   password : string;
   hobbies : Array<string>;
 
-  constructor() { 
-    this.nombre = "";
-    this.correo = "";
-    this.edad = 0;
-    this.password = "";
-    this.hobbies = [];
-  }
+  constructor(private dataService: dataService) {this.nombre = "", this.correo = "", this.edad = 0, this.password = "", this.hobbies = [];}
 
-  
+  addUsuario(nombre : string, correo : string, edad : number, password : string, hobbies : Array<string>, admin : boolean){
+    const usuario : IUsuario = {nombre, correo, edad, password, hobbies, admin, idUsuario: 0};
+    this.dataService.addUsuario(usuario).subscribe((data) => {
+      console.log("Usuario añadido: ", data);
+    });
+  }
 }

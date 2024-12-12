@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { dataService } from '../services/services.component';
+import { IUsuario } from './usuario.interface';
 
 @Component({
   selector: 'app-usuario',

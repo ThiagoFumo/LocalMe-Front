@@ -7,6 +7,7 @@ import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component'
 import { PaginaMainComponent } from '../pagina-main/pagina-main.component';
 import { AdministracionComponent } from '../administracion/administracion.component';
 import { IUsuario } from '../usuario/usuario.interface';
+import { IPost } from '../post/post.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,23 @@ export class dataService {
 
   getAllUsuarios(): Observable<IUsuario[]> {
     return this.http.get<IUsuario[]>(`${this.apiURL}/api/users/all`);
+  }
+
+  //-----------------------------------------------
+
+  addPost(post : IPost): Observable<IPost> {
+    return this.http.post<IPost>(`${this.apiURL}/api/posts/create`, post, { headers: this.headers });
+  }
+
+  modPost(idPost : number, post : IPost): Observable<IPost> {
+    return this.http.put<IPost>(`${this.apiURL}/api/posts/${idPost}/update`, post, { headers: this.headers });
+  }
+
+  deletePost(idPost : number): Observable<IPost> {
+    return this.http.delete<IPost>(`${this.apiURL}/api/posts/${idPost}/delete`);
+  }
+
+  getAllPosts(): Observable<IPost[]> {
+    return this.http.get<IPost[]>(`${this.apiURL}/api/posts/all`);
   }
 }
