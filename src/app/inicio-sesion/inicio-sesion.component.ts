@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './inicio-sesion.component.css'
 })
 export class InicioSesionComponent {
-
+  logito = 'assets/logo/logito.png';
+  logo = 'assets/logo/logo.png';
+  patron = 'assets/logo/patron.png';  
 }
