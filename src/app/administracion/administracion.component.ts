@@ -24,10 +24,15 @@ export class AdministracionComponent {
   hobbies: Array<string> = [];
   id: number = 0;
 
-  usuarios : Array<IUsuario> = [];
+  usuarios : IUsuario[] = [];
 
-  constructor(private dataService: dataService) {}
-
+  constructor(private dataService: dataService) {
+    this.dataService.getAllUsuarios().subscribe((data: IUsuario[]) => {
+      this.usuarios = data;
+      console.log('Usuarios cargados: ', this.usuarios);
+    });
+  }
+  
   // Methods for user management
   addUsuario(event: Event, nombreV2: string, correoV2: string, edadV2: number, passwordV2: string, hobbiesV2: Array<string>): void {
     event.preventDefault();

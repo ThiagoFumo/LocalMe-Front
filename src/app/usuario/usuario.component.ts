@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 
 import { dataService } from '../services/services.component';
 import { IUsuario } from './usuario.interface';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, FormsModule],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })
