@@ -1,349 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/logo/logito.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <title>LocalMe</title>
-    <style>
-        /* General */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('assets/logo/patron.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            background-color: black;
-            color: white;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-
-        .navbar .logo img {
-            width: 120px;
-            height: auto;
-        }
-
-        .navbar .menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .navbar .menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .navbar .user-dropdown {
-            position: relative;
-        }
-
-        .user-dropdown .dropdown-btn {
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-dropdown .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background-color: white;
-            color: black;
-            min-width: 150px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .user-dropdown .dropdown-content a {
-            display: block;
-            padding: 10px 15px;
-            color: white;
-            font-size: 14px;
-            background-color: black;
-
-        }
-
-        .user-dropdown .dropdown-content a:hover {
-            background-color: black;
-        }
-
-        .user-dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Search Bar */
-        .search-container {
-            margin: 30px auto;
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            width: 90%;
-            max-width:fit-content;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-bar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .search-bar select, .search-bar input {
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .search-bar button {
-            padding: 10px 15px;
-            font-size: 14px;
-            background-color: #ffc30b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .search-bar button:hover {
-            background-color: #0056b3;
-        }
-         /* Pop-up */
-         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1; 
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0); 
-            background-color: rgba(0,0,0,0.4); 
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Form Style */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-control {
-            padding: 10px;
-            width: 100%;
-            font-size: 14px;
-            border-radius: 5px;
-        }
-
-        .btn {
-            background-color: #ffc30b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            padding: 10px 15px;
-            font-size: 14px;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">
-            <img src="assets/logo/logo.png" alt="Logo">
-        </div>
-        <div class="menu">
-            <a href="#"id="createPostBtn">Crear Post</a>
-            <div class="user-dropdown">
-                <button class="dropdown-btn">
-                    👤
-                </button>
-                <div class="dropdown-content">
-                    <a href="#">Ver Perfil</a>
-                    <a href="#">Cerrar Sesión</a>
-                </div>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">
+        <img src="assets/logo/logo.png" alt="Logo" routerLink="/admin" />
+    </div>
+    <div class="menu">
+        <a href="#" (click)="openModal()">Crear Post</a>
+        <div class="user-dropdown">
+            <button class="dropdown-btn">
+                👤
+            </button>
+            <div class="dropdown-content">
+                <a href="#">Ver Perfil</a>
+                <a href="#">Cerrar Sesión</a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-        <div class="search-bar">
-            <select>
-                <option value="" disabled selected>País</option>
-                <option value="argentina">Argentina</option>
-                <option value="mexico">México</option>
-            </select>
-            <select>
-                <option value="" disabled selected>Estado/Provincia</option>
-                <option value="buenosaires">Buenos Aires</option>
-                <option value="jalisco">Jalisco</option>
-            </select>
-            <select>
-                <option value="" disabled selected>Ciudad</option>
-                <option value="ciudad1">Ciudad 1</option>
-                <option value="ciudad2">Ciudad 2</option>
-            </select>
-            <select>
-                <option value="" disabled selected>Actividad</option>
-                <option value="deporte">Deporte</option>
-                <option value="cultura">Cultura</option>
-            </select>
-            <button>🔍</button>
-        </div>
+<!-- Search Bar -->
+<div class="search-container">
+    <div class="search-bar">
+        <select>
+            <option value="" disabled selected>País</option>
+            <option value="argentina">Argentina</option>
+            <option value="mexico">México</option>
+        </select>
+        <select>
+            <option value="" disabled selected>Estado/Provincia</option>
+            <option value="buenosaires">Buenos Aires</option>
+            <option value="jalisco">Jalisco</option>
+        </select>
+        <select>
+            <option value="" disabled selected>Ciudad</option>
+            <option value="ciudad1">Ciudad 1</option>
+            <option value="ciudad2">Ciudad 2</option>
+        </select>
+        <select>
+            <option value="" disabled selected>Actividad</option>
+            <option value="deporte">Deporte</option>
+            <option value="cultura">Cultura</option>
+        </select>
+        <button>🔍</button>
     </div>
-    <div class="card" style="width: 585px;margin: 30px auto; border-radius: 10px;">
-        <div class="card-body">
-            <h3 class="card-title">Card title</h3>
-            <h5 class="card-title">User</h5>
-            <div style="margin-bottom: 8px;display: flex;">
-                <div style="margin-right: 3px ;width:fit-content;  border-radius: 10px; background-color:#3d4451; color:white;">
-                    <p style="margin: 3px;">Tag</p>
-                </div>
-                <div style="margin-right: 3px ;width:fit-content;  border-radius: 10px; background-color:#3d4451; color:white;">
-                    <p style="margin: 3px;">Tag</p>
-                </div>
-                <div style="margin-right: 3px ;width:fit-content;  border-radius: 10px; background-color:#3d4451; color:white;">
-                    <p style="margin: 3px;">Tag</p>
-                </div>
+</div>
+
+<div class="card" style="width: 585px; margin: 30px auto; border-radius: 10px;">
+    <div class="card-body">
+        <h3 class="card-title">Card title</h3>
+        <h5 class="card-title">User</h5>
+        <div style="margin-bottom: 8px; display: flex;">
+            <div
+                style="margin-right: 3px; width: fit-content; border-radius: 10px; background-color: #3d4451; color: white;">
+                <p style="margin: 3px;">Tag</p>
             </div>
-            <h6 class="card-subtitle mb-2 text-body-secondary">Pais, Provincia/estado, ciudad</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div
+                style="margin-right: 3px; width: fit-content; border-radius: 10px; background-color: #3d4451; color: white;">
+                <p style="margin: 3px;">Tag</p>
+            </div>
+            <div
+                style="margin-right: 3px; width: fit-content; border-radius: 10px; background-color: #3d4451; color: white;">
+                <p style="margin: 3px;">Tag</p>
+            </div>
         </div>
-      </div>
-         <!-- Modal -->
-    <div id="createPostModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Crear Nuevo Post</h3>
-            <form>
-                <div class="form-group">
-                    <label for="country">País:</label>
-                    <textarea  class="form-control" rows="1" placeholder="El Pais donde ocurre la actividad"></textarea>
-
-                </div>
-                <div class="form-group">
-                    <label for="state">Estado/Provincia:</label>
-                    <textarea  class="form-control" rows="1" placeholder="La Proncia / El Estado donde ocurre la actividad"></textarea>
-
-                </div>
-                <div class="form-group">
-                    <label for="city">Ciudad:</label>
-                    <textarea  class="form-control" rows="1" placeholder="La ciudad donde ocurre la actividad"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="activity">Actividad:</label>
-                    <select id="activity" class="form-control">
-                        <option value="" disabled selected>Selecciona una Actividad</option>
-                        <option value="futbol">Fútbol</option>
-                        <option value="baloncesto">Baloncesto</option>
-                        <option value="ciclismo">Ciclismo</option>
-                        <option value="senderismo">Senderismo</option>
-                        <option value="pintura">Pintura</option>
-                        <option value="fotografia">Fotografía</option>
-                        <option value="escultura">Escultura</option>
-                        <option value="teatro">Teatro</option>
-                        <option value="programacion">Programación</option>
-                        <option value="robotica">Robótica</option>
-                        <option value="lectura">Lectura</option>
-                        <option value="escritura">Escritura</option>
-                        <option value="videojuegos">Videojuegos</option>
-                        <option value="ajedrez">Ajedrez</option>
-                        <option value="canto">Canto</option>
-                        <option value="bailar">Bailar</option>
-                        <option value="cocinar">Cocinar</option>
-                        <option value="costura">Costura</option>
-                        <option value="carpinteria">Carpintería</option>
-                        <option value="jardineria">Jardinería</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="experience">Descripción de la experiencia:</label>
-                    <textarea id="experience" class="form-control" rows="4" placeholder="Describe más sobre tu experiencia..."></textarea>
-                </div>
-                <button type="submit" class="btn">Crear Post</button>
-            </form>
-        </div>
+        <h6 class="card-subtitle mb-2 text-body-secondary">País, Provincia/Estado, Ciudad</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
+</div>
 
-    <script>
-        // Obtener el modal
-        var modal = document.getElementById("createPostModal");
-
-        // Obtener el botón que abre el modal
-        var btn = document.getElementById("createPostBtn");
-
-        // Obtener el <span> que cierra el modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // Cuando el usuario haga clic en el botón, abrir el modal
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        // Cuando el usuario haga clic en <span> (x), cerrar el modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // Cuando el usuario haga clic fuera del modal, cerrarlo
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
-
-</body>
-</html>
+<!-- Modal -->
+<div id="createPostModal" class="modal" [ngStyle]="{ display: isModalOpen ? 'block' : 'none' }">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h3>Crear Nuevo Post</h3>
+        <form>
+            <div class="form-group">
+                <label for="country">País:</label>
+                <textarea class="form-control" rows="1" placeholder="El País donde ocurre la actividad"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="state">Estado/Provincia:</label>
+                <textarea class="form-control" rows="1" placeholder="La Provincia/El Estado donde ocurre la actividad"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="city">Ciudad:</label>
+                <textarea class="form-control" rows="1" placeholder="La ciudad donde ocurre la actividad"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="activity">Actividad:</label>
+                <select id="activity" class="form-control">
+                    <option value="" disabled selected>Selecciona una Actividad</option>
+                    <option value="futbol">Fútbol</option>
+                    <option value="baloncesto">Baloncesto</option>
+                    <option value="ciclismo">Ciclismo</option>
+                    <option value="senderismo">Senderismo</option>
+                    <option value="pintura">Pintura</option>
+                    <option value="fotografia">Fotografía</option>
+                    <option value="escultura">Escultura</option>
+                    <option value="teatro">Teatro</option>
+                    <option value="programacion">Programación</option>
+                    <option value="robotica">Robótica</option>
+                    <option value="lectura">Lectura</option>
+                    <option value="escritura">Escritura</option>
+                    <option value="videojuegos">Videojuegos</option>
+                    <option value="ajedrez">Ajedrez</option>
+                    <option value="canto">Canto</option>
+                    <option value="bailar">Bailar</option>
+                    <option value="cocinar">Cocinar</option>
+                    <option value="costura">Costura</option>
+                    <option value="carpinteria">Carpintería</option>
+                    <option value="jardineria">Jardinería</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="experience">Descripción de la experiencia:</label>
+                <textarea id="experience" class="form-control" rows="4" placeholder="Describe más sobre tu experiencia..."></textarea>
+            </div>
+            <button type="submit" class="btn">Crear Post</button>
+        </form>
+    </div>
+</div>

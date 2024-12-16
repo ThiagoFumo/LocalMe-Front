@@ -1,93 +1,30 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="icon" type="image/x-icon" href="assets/logo/logito.png">
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-sm" style="width: 100%; max-width: 400px;">
+    <div class="card-body">
+      <h4 class="card-title text-center mb-4">Iniciar Sesión</h4>
 
-  <!-- Incluimos Bootstrap desde el CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    /* Imagen de fondo responsiva */
-    body {
-      background-image: url('assets/logo/patron.png');
-      background-size: cover;    /* La imagen cubre toda el área de la pantalla */
-      background-position: center; /* Centra la imagen */
-      background-attachment: fixed; /* Fija la imagen al fondo */
-      height: 100vh;  /* Asegura que la imagen cubra toda la pantalla verticalmente */
-      margin: 0;  /* Elimina márgenes para evitar desplazamientos */
-    }
-
-    /* Personalización del color del fondo del botón */
-    .btn-custom {
-      background-color: #ffc30b;
-      color: black;  /* Texto en negro */
-      font-weight: bold; /* Texto en negrita */
-    }
-
-    /* Cambiar el color del borde de los inputs al estar seleccionados */
-    .form-control:focus {
-      border-color: #ffc30b;
-      box-shadow: 0 0 0 0.25rem rgba(255, 195, 11, 0.25);
-    }
-
-    /* Cambiar color del fondo del botón al pasar el mouse por encima */
-    .btn-custom:hover {
-      background-color: #e0a800;
-      color: black;  /* Mantener el texto en negro al pasar el mouse */
-    }
-
-    /* Card para el login */
-    .card {
-      background-color: rgba(41, 41, 41, 0.842);  /* Fondo blanco con algo de transparencia */
-      border-radius: 10px;
-      color: white;
-      border: 3px solid #e0a800;
-    }
-
-    .card-title{
-      font-weight: 900;
-      font-size: 35px;
-    }
-
-  </style>
-</head>
-<body>
-
-  <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow-sm" style="width: 100%; max-width: 400px;">
-      <div class="card-body">
-        <h4 class="card-title text-center mb-4">Iniciar Sesión</h4>
-
-        <form action="#" method="POST">
-          <!-- Campo para correo electrónico -->
-          <div class="mb-3">
-            <label for="email" class="form-label" aria-placeholder="correo">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-          </div>
-
-          <!-- Campo para la contraseña -->
-          <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-          </div>
-
-          <!-- Botón de inicio de sesión con color personalizado -->
-          <div class="d-grid">
-            <button type="submit" class="btn btn-custom">Iniciar Sesión</button>
-          </div>
-        </form>
-
-        <div class="mt-3 text-center">
-          <small>¿No tienes una cuenta? <a href="#">Regístrate</a></small>
+      <form action="#" method="POST">
+        <!-- Campo para correo electrónico -->
+        <div class="mb-3">
+          <label for="email" class="form-label" aria-placeholder="correo">Correo Electrónico</label>
+          <input type="email" class="form-control" id="email" name="email" required>
         </div>
+
+        <!-- Campo para la contraseña -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <!-- Botón de inicio de sesión con color personalizado -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-custom">Iniciar Sesión</button>
+        </div>
+      </form>
+
+      <div class="mt-3 text-center">
+        <small>¿No tienes una cuenta? <a routerLink = "/registrar">Regístrate</a></small>
       </div>
     </div>
   </div>
-
-  <!-- Scripts de Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>

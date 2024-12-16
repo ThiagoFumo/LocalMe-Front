@@ -1,261 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href= "assets/logo/logito.png">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>LocalMe</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('assets/logo/patron.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            background-color: black;
-            color: white;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-
-        .navbar .logo img {
-            width: 120px;
-            height: auto;
-        }
-
-        .navbar .menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .navbar .menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .navbar .user-dropdown {
-            position: relative;
-        }
-
-        .user-dropdown .dropdown-btn {
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-dropdown .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background-color: white;
-            color: black;
-            min-width: 150px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .user-dropdown .dropdown-content a {
-            display: block;
-            padding: 10px 15px;
-            color: white;
-            font-size: 14px;
-            background-color: black;
-
-        }
-
-        .user-dropdown .dropdown-content a:hover {
-            background-color: black;
-        }
-
-        .user-dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-
-        .usuarios {
-            background-color: white;
-            color: black;
-            border-radius: 10px;
-            margin: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Alinea todos los elementos verticalmente */
-            padding: 10px 20px;
-        }
-
-        .datos {
-            display: flex;
-            gap: 20px; /* Espaciado entre los datos */
-            align-items: center; /* Alinea verticalmente los datos */
-        }
-
-        .datos p {
-            margin: 0; /* Elimina márgenes innecesarios */
-        }
-
-        .botones {
-            display: flex;
-            gap: 10px; /* Espaciado entre botones */
-            align-items: center; /* Alinea verticalmente los botones */
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close {
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">
-            <img src="assets/logo/logo.png" alt="Logo">
-        </div>
-        <div class="menu">
-            <div class="user-dropdown">
-                <button class="dropdown-btn">
-                    👤
-                </button>
-                <div class="dropdown-content">
-                    <a href="#">Cerrar Sesión</a>
-                </div>
-            </div>
-        </div>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">
+      <img src="{{ logo }}" alt="Logo">
     </div>
-    <button class="btn btn-success" onclick="openModal('addUserModal')" style="margin: 10px;">Agregar Usuario</button>
-    
-    <!-- Usuario list -->
-    <div class="usuarios">
-        <div class="datos">
-            <p>nombre</p>
-            <p>contraseña</p>
-            <p>edad</p>
-            <p>email</p>
-            <p>Tags</p>
+    <div class="menu">
+      <div class="user-dropdown">
+        <button class="dropdown-btn">👤</button>
+        <div class="dropdown-content">
+          <a href="#">Cerrar Sesión</a>
         </div>
-        <div class="botones">
-            <button class="btn btn-warning" onclick="openModal('editUserModal')">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
-        </div>
+      </div>
     </div>
-
-    <!-- Add User Modal -->
-    <div id="addUserModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Agregar Usuario</h2>
-                <span class="close" onclick="closeModal('addUserModal')">&times;</span>
-            </div>
-            <form>
-                <label for="addName">Nombre:</label>
-                <input type="text" id="addName" class="form-control" required>
-
-                <label for="addPassword">Contraseña:</label>
-                <input type="password" id="addPassword" class="form-control" required>
-
-                <label for="addAge">Edad:</label>
-                <input type="number" id="addAge" class="form-control" required>
-
-                <label for="addEmail">Email:</label>
-                <input type="email" id="addEmail" class="form-control" required>
-
-                <label for="addTags">Tags:</label>
-                <input type="text" id="addTags" class="form-control" placeholder="Ingrese tags separados por comas" required>
-
-                <button type="submit" class="btn btn-primary mt-3">Guardar</button>
-            </form>
-        </div>
+  </div>
+  
+  <!-- Button to open the Add User modal -->
+  <button class="btn btn-success" (click)="openModal('addUserModal')" style="margin: 10px;">Agregar Usuario</button>
+  
+  <!-- Usuario List -->
+<!-- Usuario List -->
+<div class="usuarios" *ngFor="let usuario of usuarios">
+    <div class="datos">
+      <p>{{ usuario.idUsuario }}</p>
+      <p>{{ usuario.nombre }}</p>
+      <p>{{ usuario.password }}</p>
+      <p>{{ usuario.edad }}</p>
+      <p>{{ usuario.correo }}</p>
+      <p>{{ usuario.hobbies.join(', ') }}</p>
     </div>
-
-    <!-- Edit User Modal -->
-    <div id="editUserModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Editar Usuario</h2>
-                <span class="close" onclick="closeModal('editUserModal')">&times;</span>
-            </div>
-            <form>
-                <label for="editName">Nombre:</label>
-                <input type="text" id="editName" class="form-control" required>
-
-                <label for="editPassword">Contraseña:</label>
-                <input type="password" id="editPassword" class="form-control" required>
-
-                <label for="editAge">Edad:</label>
-                <input type="number" id="editAge" class="form-control" required>
-
-                <label for="editEmail">Email:</label>
-                <input type="email" id="editEmail" class="form-control" required>
-
-                <label for="editTags">Tags:</label>
-                <input type="text" id="editTags" class="form-control" placeholder="Ingrese tags separados por comas" required>
-
-                <button type="submit" class="btn btn-success mt-3">Actualizar</button>
-            </form>
-        </div>
+    <div class="botones">
+      <button class="btn btn-warning" (click)="openModal('editUserModal')">Editar</button>
+      <button class="btn btn-danger" (click)="delUsuario(usuario.idUsuario)">Eliminar</button>
     </div>
+  </div>
+  
+  
+  <!-- Add User Modal -->
+  <div id="addUserModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Agregar Usuario</h2>
+        <span class="close" (click)="closeModal('addUserModal')">&times;</span>
+      </div>
+      <form (ngSubmit)="addUsuario($event, nombre, correo, edad, password, hobbies)">
+        <label for="nombre">Nombre:</label>
+        <input type="text" [(ngModel)]="nombre" id="nombre" class="form-control" name="nombre" required>
+  
+        <label for="password">Password:</label>
+        <input type="password" [(ngModel)]="password" id="password" class="form-control" name="password" required>
+  
+        <label for="edad">Edad:</label>
+        <input type="number" [(ngModel)]="edad" id="edad" class="form-control" name="edad" required>
+  
+        <label for="correo">Mail:</label>
+        <input type="email" [(ngModel)]="correo" id="correo" class="form-control" name="correo" required>
+  
+        <label for="hobbies" class="form-label">Selecciona tus hobbies</label>
+        <select class="form-select" id="hobbies" [(ngModel)]="hobbies" name="hobbies[]" multiple required>
+          <option value="futbol">Fútbol</option>
+          <option value="baloncesto">Baloncesto</option>
+          <option value="ciclismo">Ciclismo</option>
+          <option value="senderismo">Senderismo</option>
+          <option value="pintura">Pintura</option>
+          <option value="fotografia">Fotografía</option>
+          <option value="escultura">Escultura</option>
+          <option value="teatro">Teatro</option>
+          <option value="programacion">Programación</option>
+          <option value="robotica">Robótica</option>
+          <option value="lectura">Lectura</option>
+          <option value="escritura">Escritura</option>
+          <option value="videojuegos">Videojuegos</option>
+          <option value="ajedrez">Ajedrez</option>
+          <option value="canto">Canto</option>
+          <option value="bailar">Bailar</option>
+          <option value="cocinar">Cocinar</option>
+          <option value="costura">Costura</option>
+          <option value="carpinteria">Carpintería</option>
+          <option value="jardinera">Jardinería</option>
+        </select>
+  
+        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Edit User Modal -->
+  <div id="editUserModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Editar Usuario</h2>
+        <span class="close" (click)="closeModal('editUserModal')">&times;</span>
+      </div>
+      <form (ngSubmit)="modUsuario(id, $event, nombre, correo, edad, password, hobbies)">
 
-    <script>
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
+        <label for="id">ID:</label>
+        <input type="text" [(ngModel)]="id" name="id" id="idMod" class="form-control" required>
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+        <label for="nombre">Nombre:</label>
+        <input type="text" [(ngModel)]="nombre" name="nombre" id="nombreMod" class="form-control" required>
+  
+        <label for="password">Contraseña:</label>
+        <input type="password" [(ngModel)]="password" class="form-control" id="passwordMod" name="password" required>
+  
+        <label for="edad">Edad:</label>
+        <input type="number" [(ngModel)]="edad" name= "edad" id="edadMod" class="form-control" required>
+  
+        <label for="correo">Email:</label>
+        <input type="email" [(ngModel)]="correo" name= "correo" id="correoMod" class="form-control" required>
+  
+        <label for="hobbies" class="form-label">Selecciona tus hobbies</label>
+        <select class="form-select" id="hobbiesMod" [(ngModel)]="hobbies" name="hobbies[]" multiple required>
+          <option value="futbol">Fútbol</option>
+          <option value="baloncesto">Baloncesto</option>
+          <option value="ciclismo">Ciclismo</option>
+          <option value="senderismo">Senderismo</option>
+          <option value="pintura">Pintura</option>
+          <option value="fotografia">Fotografía</option>
+          <option value="escultura">Escultura</option>
+          <option value="teatro">Teatro</option>
+          <option value="programacion">Programación</option>
+          <option value="robotica">Robótica</option>
+          <option value="lectura">Lectura</option>
+          <option value="escritura">Escritura</option>
+          <option value="videojuegos">Videojuegos</option>
+          <option value="ajedrez">Ajedrez</option>
+          <option value="canto">Canto</option>
+          <option value="bailar">Bailar</option>
+          <option value="cocinar">Cocinar</option>
+          <option value="costura">Costura</option>
+          <option value="carpinteria">Carpintería</option>
+          <option value="jardinera">Jardinería</option>
+        </select>
+  
+        <button type="submit" class="btn btn-success mt-3">Actualizar</button>
+      </form>
+    </div>
+  </div>
+  

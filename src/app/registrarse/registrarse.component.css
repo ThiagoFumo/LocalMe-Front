@@ -1,0 +1,41 @@
+        /* Imagen de fondo responsiva */
+        body {
+            background-image: url('../../assets/logo/patron.png');
+            background-size: cover;    /* La imagen cubre toda el área de la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-attachment: fixed; /* Fija la imagen al fondo */
+            height: 100vh;  /* Asegura que la imagen cubra toda la pantalla verticalmente */
+            margin: 0;  /* Elimina márgenes para evitar desplazamientos */
+        }
+        
+        /* Personalización del color del fondo del botón */
+        .btn-custom {
+            background-color: #ffc30b;
+            color: black;  /* Texto en negro */
+            font-weight: bold; /* Texto en negrita */
+        }
+        
+        /* Cambiar el color del borde de los inputs al estar seleccionados */
+        .form-control:focus {
+            border-color: #ffc30b;
+            box-shadow: 0 0 0 0.25rem rgba(255, 195, 11, 0.25);
+        }
+        
+        /* Cambiar color del fondo del botón al pasar el mouse por encima */
+        .btn-custom:hover {
+            background-color: #e0a800;
+            color: black;  /* Mantener el texto en negro al pasar el mouse */
+        }
+        
+        /* Card para el login */
+        .card {
+            background-color: rgba(41, 41, 41, 0.842);  /* Fondo blanco con algo de transparencia */
+            border-radius: 10px;
+            color: white;
+            border: 3px solid #e0a800;
+        }
+        
+        .card-title {
+            font-weight: 900;
+            font-size: 35px;
+        }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
@@ -16,14 +16,9 @@ import { PostComponent } from './post/post.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    RegistrarseComponent,
-    InicioSesionComponent,
-    PaginaMainComponent,
-    AdministracionComponent,
-    UsuarioComponent,
-    PostComponent,
     HttpClientModule, // For HTTP requests
-    CommonModule // For common Angular directives like *ngIf, *ngFor
+    CommonModule,
+    RouterModule // For common Angular directives like *ngIf, *ngFor
   ],
   providers: [dataService],
   templateUrl: './app.component.html',
@@ -32,3 +27,5 @@ import { PostComponent } from './post/post.component';
 export class AppComponent {
   title = 'localME';
 }
+
+

@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../../assets/logo/patron.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navbar .logo img {
+    width: 120px;
+    height: auto;
+}
+
+.navbar .menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar .menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar .user-dropdown {
+    position: relative;
+}
+
+.user-dropdown .dropdown-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    color: black;
+    min-width: 150px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.user-dropdown .dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    background-color: black;
+
+}
+
+.user-dropdown .dropdown-content a:hover {
+    background-color: black;
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.usuarios {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea todos los elementos verticalmente */
+    padding: 10px 20px;
+}
+
+.datos {
+    display: flex;
+    gap: 20px; /* Espaciado entre los datos */
+    align-items: center; /* Alinea verticalmente los datos */
+}
+
+.datos p {
+    margin: 0; /* Elimina márgenes innecesarios */
+}
+
+.botones {
+    display: flex;
+    gap: 10px; /* Espaciado entre botones */
+    align-items: center; /* Alinea verticalmente los botones */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
