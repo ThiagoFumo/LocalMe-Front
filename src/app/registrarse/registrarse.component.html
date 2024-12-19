@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4 class="card-title text-center mb-4">Regístrate</h4>
 
-                <form (ngSubmit)="addUsuario($event, nombre, correo, edad, password, hobbies)">
+                <form (ngSubmit)="addUsuario($event, nombre, correo, edad, password)">
                     <!-- Form fields go here -->
                     <div class="mb-3">
                       <label for="nombre" class="form-label">Nombre</label>
@@ -21,31 +21,6 @@
                     <div class="mb-3">
                       <label for="password" class="form-label">Contraseña</label>
                       <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <div class="mb-3">
-                      <label for="hobbies" class="form-label">Selecciona tus hobbies</label>
-                      <select class="form-select" id="hobbies" [(ngModel)]="hobbies" name="hobbies[]" multiple required>
-                        <option value="futbol">Fútbol</option>
-                        <option value="baloncesto">Baloncesto</option>
-                        <option value="ciclismo">Ciclismo</option>
-                        <option value="senderismo">Senderismo</option>
-                        <option value="pintura">Pintura</option>
-                        <option value="fotografia">Fotografía</option>
-                        <option value="escultura">Escultura</option>
-                        <option value="teatro">Teatro</option>
-                        <option value="programacion">Programación</option>
-                        <option value="robotica">Robótica</option>
-                        <option value="lectura">Lectura</option>
-                        <option value="escritura">Escritura</option>
-                        <option value="videojuegos">Videojuegos</option>
-                        <option value="ajedrez">Ajedrez</option>
-                        <option value="canto">Canto</option>
-                        <option value="bailar">Bailar</option>
-                        <option value="cocinar">Cocinar</option>
-                        <option value="costura">Costura</option>
-                        <option value="carpinteria">Carpintería</option>
-                        <option value="jardinera">Jardinería</option>
-                      </select>
                     </div>
                   
                     <div class="d-grid">

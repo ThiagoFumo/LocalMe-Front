@@ -6,6 +6,9 @@ import { dataService } from '../services/services.component';
 import { IUsuario } from './usuario.interface';
 import { FormsModule } from '@angular/forms';
 
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 @Component({
   selector: 'app-usuario',
   standalone: true,

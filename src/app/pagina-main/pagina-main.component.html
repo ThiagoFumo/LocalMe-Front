@@ -1,121 +1,121 @@
 <!-- Navbar -->
 <div class="navbar">
-    <div class="logo">
-        <img src="assets/logo/logo.png" alt="Logo" routerLink="/admin" />
+  <div class="logo">
+    <img src="assets/logo/logo.png" alt="Logo" routerLink="/admin" />
+  </div>
+  <div class="menu">
+    <a href="" (click)="ermActually($event)">🤓</a>
+    <a href="#" (click)="openModal()">Crear Post</a>
+    <div class="user-dropdown">
+      <button class="dropdown-btn">👤</button>
+      <div class="dropdown-content">
+        <a href="#">Ver Perfil</a>
+        <a href="#">Cerrar Sesión</a>
+      </div>
     </div>
-    <div class="menu">
-        <a href="#" (click)="openModal()">Crear Post</a>
-        <div class="user-dropdown">
-            <button class="dropdown-btn">
-                👤
-            </button>
-            <div class="dropdown-content">
-                <a href="#">Ver Perfil</a>
-                <a href="#">Cerrar Sesión</a>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 
 <!-- Search Bar -->
 <div class="search-container">
-    <div class="search-bar">
-        <select>
-            <option value="" disabled selected>País</option>
-            <option value="argentina">Argentina</option>
-            <option value="mexico">México</option>
-        </select>
-        <select>
-            <option value="" disabled selected>Estado/Provincia</option>
-            <option value="buenosaires">Buenos Aires</option>
-            <option value="jalisco">Jalisco</option>
-        </select>
-        <select>
-            <option value="" disabled selected>Ciudad</option>
-            <option value="ciudad1">Ciudad 1</option>
-            <option value="ciudad2">Ciudad 2</option>
-        </select>
-        <select>
-            <option value="" disabled selected>Actividad</option>
-            <option value="deporte">Deporte</option>
-            <option value="cultura">Cultura</option>
-        </select>
-        <button>🔍</button>
-    </div>
+  <div class="search-bar">
+    <select [(ngModel)]="filters.pais" (change)="applyFilters($event)">
+      <option value="" disabled selected>País</option>
+      <option value="argentina">Argentina</option>
+      <option value="mexico">México</option>
+    </select>
+    <select [(ngModel)]="filters.estado" (change)="applyFilters($event)">
+      <option value="" disabled selected>Estado/Provincia</option>
+      <option value="buenosaires">Buenos Aires</option>
+      <option value="jalisco">Jalisco</option>
+    </select>
+    <select [(ngModel)]="filters.ciudad" (change)="applyFilters($event)">
+      <option value="" disabled selected>Ciudad</option>
+      <option value="ciudad1">Ciudad 1</option>
+      <option value="ciudad2">Ciudad 2</option>
+    </select>
+    <select [(ngModel)]="filters.actividad" (change)="applyFilters($event)">
+      <option value="" disabled selected>Actividad</option>
+      <option value="deporte">Deporte</option>
+      <option value="cultura">Cultura</option>
+    </select>
+    <button (click)="applyFilters($event)">🔍</button>
+  </div>
 </div>
 
-<div class="card" style="width: 585px; margin: 30px auto; border-radius: 10px;">
-    <div class="card-body">
-        <h3 class="card-title">Card title</h3>
-        <h5 class="card-title">User</h5>
-        <div style="margin-bottom: 8px; display: flex;">
-            <div
-                style="margin-right: 3px; width: fit-content; border-radius: 10px; background-color: #3d4451; color: white;">
-                <p style="margin: 3px;">Tag</p>
-            </div>
-            <div
-                style="margin-right: 3px; width: fit-content; border-radius: 10px; background-color: #3d4451; color: white;">
-                <p style="margin: 3px;">Tag</p>
-            </div>
-            <div
-                style="margin-right: 3px; width: fit-content; border-radius: 10px; background-color: #3d4451; color: white;">
-                <p style="margin: 3px;">Tag</p>
-            </div>
-        </div>
-        <h6 class="card-subtitle mb-2 text-body-secondary">País, Provincia/Estado, Ciudad</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<!-- Display posts -->
+<div *ngFor="let post of filteredPosts" class="card" style="width: 585px; margin: 30px auto; border-radius: 10px;">
+  <div class="card-body">
+    <h3 class="card-title">{{ post.titulo }}</h3>
+    <h5 class="card-title">{{ post.idCreador }}</h5>
+    <div style="margin-bottom: 8px; display: flex;">
+      <div
+        *ngFor="let tag of post.actividad"
+        style="margin-right: 3px; width: fit-content; border-radius: 10px; background-color: #3d4451; color: white;"
+      >
+        <p style="margin: 3px;">{{ tag }}</p>
+      </div>
     </div>
+    <h6 class="card-subtitle mb-2 text-body-secondary">
+      {{ post.pais }}, {{ post.provincia }}, {{ post.ciudad }}
+    </h6>
+    <p class="card-text">{{ post.descripcion }}</p>
+  </div>
 </div>
 
 <!-- Modal -->
 <div id="createPostModal" class="modal" [ngStyle]="{ display: isModalOpen ? 'block' : 'none' }">
-    <div class="modal-content">
-        <span class="close" (click)="closeModal()">&times;</span>
-        <h3>Crear Nuevo Post</h3>
-        <form>
-            <div class="form-group">
-                <label for="country">País:</label>
-                <textarea class="form-control" rows="1" placeholder="El País donde ocurre la actividad"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="state">Estado/Provincia:</label>
-                <textarea class="form-control" rows="1" placeholder="La Provincia/El Estado donde ocurre la actividad"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="city">Ciudad:</label>
-                <textarea class="form-control" rows="1" placeholder="La ciudad donde ocurre la actividad"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="activity">Actividad:</label>
-                <select id="activity" class="form-control">
-                    <option value="" disabled selected>Selecciona una Actividad</option>
-                    <option value="futbol">Fútbol</option>
-                    <option value="baloncesto">Baloncesto</option>
-                    <option value="ciclismo">Ciclismo</option>
-                    <option value="senderismo">Senderismo</option>
-                    <option value="pintura">Pintura</option>
-                    <option value="fotografia">Fotografía</option>
-                    <option value="escultura">Escultura</option>
-                    <option value="teatro">Teatro</option>
-                    <option value="programacion">Programación</option>
-                    <option value="robotica">Robótica</option>
-                    <option value="lectura">Lectura</option>
-                    <option value="escritura">Escritura</option>
-                    <option value="videojuegos">Videojuegos</option>
-                    <option value="ajedrez">Ajedrez</option>
-                    <option value="canto">Canto</option>
-                    <option value="bailar">Bailar</option>
-                    <option value="cocinar">Cocinar</option>
-                    <option value="costura">Costura</option>
-                    <option value="carpinteria">Carpintería</option>
-                    <option value="jardineria">Jardinería</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="experience">Descripción de la experiencia:</label>
-                <textarea id="experience" class="form-control" rows="4" placeholder="Describe más sobre tu experiencia..."></textarea>
-            </div>
-            <button type="submit" class="btn">Crear Post</button>
-        </form>
-    </div>
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>Crear Nuevo Post</h3>
+    <form (ngSubmit)="addPost($event, titulo, pais, estado, ciudad, actividad, descripcion)">
+      <div class="form-group">
+        <label for="country">Título::</label>
+        <textarea [(ngModel)]="titulo" name="titulo" id= "addTitulo" class="form-control" rows="1" placeholder="Nombre de la actividad"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="country">País:</label>
+        <textarea [(ngModel)]="pais" name="pais" id= "addPais" class="form-control" rows="1" placeholder="El País donde ocurre la actividad"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="state">Estado/Provincia:</label>
+        <textarea [(ngModel)]="estado" name ="provincia" id = "addEstado" class="form-control" rows="1" placeholder="La Provincia/El Estado donde ocurre la actividad"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="city">Ciudad:</label>
+        <textarea [(ngModel)]="ciudad" name="ciudad" id="addCity" class="form-control" rows="1" placeholder="La ciudad donde ocurre la actividad"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="activity">Actividad:</label>
+        <select [(ngModel)]="actividad" name="actividad" id="activity" class="form-control">
+          <option value="" disabled selected>Selecciona una Actividad</option>
+          <option value="futbol">Fútbol</option>
+          <option value="baloncesto">Baloncesto</option>
+          <option value="ciclismo">Ciclismo</option>
+          <option value="senderismo">Senderismo</option>
+          <option value="pintura">Pintura</option>
+          <option value="fotografia">Fotografía</option>
+          <option value="escultura">Escultura</option>
+          <option value="teatro">Teatro</option>
+          <option value="programacion">Programación</option>
+          <option value="robotica">Robótica</option>
+          <option value="lectura">Lectura</option>
+          <option value="escritura">Escritura</option>
+          <option value="videojuegos">Videojuegos</option>
+          <option value="ajedrez">Ajedrez</option>
+          <option value="canto">Canto</option>
+          <option value="bailar">Bailar</option>
+          <option value="cocinar">Cocinar</option>
+          <option value="costura">Costura</option>
+          <option value="carpinteria">Carpintería</option>
+          <option value="jardinera">Jardinería</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="experience">Descripción de la experiencia:</label>
+        <textarea [(ngModel)]="descripcion" name="descripcion" id="addExperience" class="form-control" rows="4" placeholder="Describe más sobre tu experiencia..."></textarea>
+      </div>
+      <button type="submit" class="btn">Crear Post</button>
+    </form>
+  </div>
 </div>

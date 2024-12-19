@@ -8,6 +8,8 @@ import { PaginaMainComponent } from '../pagina-main/pagina-main.component';
 import { AdministracionComponent } from '../administracion/administracion.component';
 import { IUsuario } from '../usuario/usuario.interface';
 import { IPost } from '../post/post.interface';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +37,10 @@ export class dataService {
 
   getAllUsuarios(): Observable<IUsuario[]> {
     return this.http.get<IUsuario[]>(`${this.apiURL}/api/users/all`);
+  }
+
+  getAdmins(): Observable<number[]> {
+    return this.http.get<number[]>(`${this.apiURL}/api/admin/all`);
   }
 
   //-----------------------------------------------

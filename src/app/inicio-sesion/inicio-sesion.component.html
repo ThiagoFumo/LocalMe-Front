@@ -3,17 +3,17 @@
     <div class="card-body">
       <h4 class="card-title text-center mb-4">Iniciar Sesión</h4>
 
-      <form action="#" method="POST">
+      <form (ngSubmit)="mainUsuario($event, correo, password)">
         <!-- Campo para correo electrónico -->
         <div class="mb-3">
-          <label for="email" class="form-label" aria-placeholder="correo">Correo Electrónico</label>
-          <input type="email" class="form-control" id="email" name="email" required>
+          <label for="correo" class="form-label">Correo Electrónico</label>
+          <input type="email" [(ngModel)]="correo" class="form-control" id="correo" name="correo" required>
         </div>
 
         <!-- Campo para la contraseña -->
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="password" name="password" required>
+          <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password" required>
         </div>
 
         <!-- Botón de inicio de sesión con color personalizado -->

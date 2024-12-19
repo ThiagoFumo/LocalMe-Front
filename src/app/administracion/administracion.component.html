@@ -1,139 +1,104 @@
 <!-- Navbar -->
 <div class="navbar">
-    <div class="logo" >
-      <img src="{{ logo }}" alt="Logo">
-    </div>
-    <div class="menu">
-      <div class="user-dropdown">
-        <button class="dropdown-btn">👤</button>
-        <div class="dropdown-content">
-          <a href="#">Cerrar Sesión</a>
-        </div>
+  <div class="logo">
+    <img src="{{ logo }}" alt="Logo">
+  </div>
+  <div class="menu">
+    <div class="user-dropdown">
+      <button class="dropdown-btn">👤</button>
+      <div class="dropdown-content">
+        <a href="#">Cerrar Sesión</a>
       </div>
     </div>
   </div>
-  
-  <!-- Button to open the Add User modal -->
-  <button class="btn btn-success" (click)="openModal('addUserModal')" style="margin: 10px;">Agregar Usuario</button>
-  
-  <!-- Usuario List -->
+</div>
+
+<!-- Button to open the Add User modal -->
+<button class="btn btn-success" (click)="openModal('addUserModal')" style="margin: 10px;">Agregar Usuario</button>
+
 <!-- Usuario List -->
 <div class="usuarios" *ngFor="let usuario of usuarios">
-    <div class="datos">
-      <p>{{ usuario.idUsuario }}</p>
-      <p>{{ usuario.nombre }}</p>
-      <p>{{ usuario.password }}</p>
-      <p>{{ usuario.edad }}</p>
-      <p>{{ usuario.correo }}</p>
-      <p>{{ usuario.hobbies.join(', ') }}</p>
-    </div>
-    <div class="botones">
-      <button class="btn btn-warning" (click)="openModal('editUserModal')">Editar</button>
-      <button class="btn btn-danger" (click)="delUsuario(usuario.idUsuario)">Eliminar</button>
-    </div>
+  <div class="datos">
+    <p>{{ usuario.idUsuario }}</p>
+    <p>{{ usuario.nombre }}</p>
+    <p>{{ usuario.password }}</p>
+    <p>{{ usuario.edad }}</p>
+    <p>{{ usuario.correo }}</p>
+    <p>{{ usuario.idPosts.join(', ') }}</p>
   </div>
-  
-  
-  
-  <!-- Add User Modal -->
-  <div id="addUserModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Agregar Usuario</h2>
-        <span class="close" (click)="closeModal('addUserModal')">&times;</span>
-      </div>
-      <form (ngSubmit)="addUsuario($event, nombre, correo, edad, password, hobbies)">
-        <label for="nombre">Nombre:</label>
-        <input type="text" [(ngModel)]="nombre" id="nombre" class="form-control" name="nombre" required>
-  
-        <label for="password">Password:</label>
-        <input type="password" [(ngModel)]="password" id="password" class="form-control" name="password" required>
-  
-        <label for="edad">Edad:</label>
-        <input type="number" [(ngModel)]="edad" id="edad" class="form-control" name="edad" required>
-  
-        <label for="correo">Mail:</label>
-        <input type="email" [(ngModel)]="correo" id="correo" class="form-control" name="correo" required>
-  
-        <label for="hobbies" class="form-label">Selecciona tus hobbies</label>
-        <select class="form-select" id="hobbies" [(ngModel)]="hobbies" name="hobbies[]" multiple required>
-          <option value="futbol">Fútbol</option>
-          <option value="baloncesto">Baloncesto</option>
-          <option value="ciclismo">Ciclismo</option>
-          <option value="senderismo">Senderismo</option>
-          <option value="pintura">Pintura</option>
-          <option value="fotografia">Fotografía</option>
-          <option value="escultura">Escultura</option>
-          <option value="teatro">Teatro</option>
-          <option value="programacion">Programación</option>
-          <option value="robotica">Robótica</option>
-          <option value="lectura">Lectura</option>
-          <option value="escritura">Escritura</option>
-          <option value="videojuegos">Videojuegos</option>
-          <option value="ajedrez">Ajedrez</option>
-          <option value="canto">Canto</option>
-          <option value="bailar">Bailar</option>
-          <option value="cocinar">Cocinar</option>
-          <option value="costura">Costura</option>
-          <option value="carpinteria">Carpintería</option>
-          <option value="jardinera">Jardinería</option>
-        </select>
-  
-        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
-      </form>
-    </div>
+  <div class="botones">
+    <button class="btn btn-warning" (click)="openModal('editUserModal')">Editar</button>
+    <button class="btn btn-danger" (click)="delUsuario(usuario.idUsuario)">Eliminar</button>
   </div>
-  
-  <!-- Edit User Modal -->
-  <div id="editUserModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Editar Usuario</h2>
-        <span class="close" (click)="closeModal('editUserModal')">&times;</span>
-      </div>
-      <form (ngSubmit)="modUsuario(id, $event, nombre, correo, edad, password, hobbies)">
+</div>
 
-        <label for="id">ID:</label>
-        <input type="text" [(ngModel)]="id" name="id" id="idMod" class="form-control" required>
-
-        <label for="nombre">Nombre:</label>
-        <input type="text" [(ngModel)]="nombre" name="nombre" id="nombreMod" class="form-control" required>
-  
-        <label for="password">Contraseña:</label>
-        <input type="password" [(ngModel)]="password" class="form-control" id="passwordMod" name="password" required>
-  
-        <label for="edad">Edad:</label>
-        <input type="number" [(ngModel)]="edad" name= "edad" id="edadMod" class="form-control" required>
-  
-        <label for="correo">Email:</label>
-        <input type="email" [(ngModel)]="correo" name= "correo" id="correoMod" class="form-control" required>
-  
-        <label for="hobbies" class="form-label">Selecciona tus hobbies</label>
-        <select class="form-select" id="hobbiesMod" [(ngModel)]="hobbies" name="hobbies[]" multiple required>
-          <option value="futbol">Fútbol</option>
-          <option value="baloncesto">Baloncesto</option>
-          <option value="ciclismo">Ciclismo</option>
-          <option value="senderismo">Senderismo</option>
-          <option value="pintura">Pintura</option>
-          <option value="fotografia">Fotografía</option>
-          <option value="escultura">Escultura</option>
-          <option value="teatro">Teatro</option>
-          <option value="programacion">Programación</option>
-          <option value="robotica">Robótica</option>
-          <option value="lectura">Lectura</option>
-          <option value="escritura">Escritura</option>
-          <option value="videojuegos">Videojuegos</option>
-          <option value="ajedrez">Ajedrez</option>
-          <option value="canto">Canto</option>
-          <option value="bailar">Bailar</option>
-          <option value="cocinar">Cocinar</option>
-          <option value="costura">Costura</option>
-          <option value="carpinteria">Carpintería</option>
-          <option value="jardinera">Jardinería</option>
-        </select>
-  
-        <button type="submit" class="btn btn-success mt-3">Actualizar</button>
-      </form>
+<!-- Posts List -->
+<div class="posts mt-4">
+  <h3>Posts</h3>
+  <div class="post-datos d-flex align-items-center mb-3" *ngFor="let post of posts">
+    <button class="btn btn-danger me-2" (click)="delPost(post.idPost)">Eliminar</button>
+    <div>
+      <p><strong>ID:</strong> {{ post.idPost }}</p>
+      <p><strong>Contenido:</strong> {{ post.titulo }}</p>
+      <p><strong>Autor:</strong> {{ post.descripcion }}</p>
+      <p><strong>País:</strong> {{ post.idCreador }}</p>
+      <p><strong>Actividad:</strong> {{ post.actividad }}</p>
     </div>
   </div>
-  
+</div>
+
+<!-- Add User Modal -->
+<div id="addUserModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Agregar Usuario</h2>
+      <span class="close" (click)="closeModal('addUserModal')">&times;</span>
+    </div>
+    <form (ngSubmit)="addUsuario($event, nombre, correo, edad, password)">
+      <label for="nombre">Nombre:</label>
+      <input type="text" [(ngModel)]="nombre" id="nombre" class="form-control" name="nombre" required>
+
+      <label for="password">Password:</label>
+      <input type="password" [(ngModel)]="password" id="password" class="form-control" name="password" required>
+
+      <label for="edad">Edad:</label>
+      <input type="number" [(ngModel)]="edad" id="edad" class="form-control" name="edad" required>
+
+      <label for="correo">Mail:</label>
+      <input type="email" [(ngModel)]="correo" id="correo" class="form-control" name="correo" required>
+
+      <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Edit User Modal -->
+<div id="editUserModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Editar Usuario</h2>
+      <span class="close" (click)="closeModal('editUserModal')">&times;</span>
+    </div>
+    <form (ngSubmit)="modUsuario(id, $event, nombre, correo, edad, password, idPosts)">
+      <label for="id">ID:</label>
+      <input type="text" [(ngModel)]="id" name="id" id="idMod" class="form-control" required readonly>
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" [(ngModel)]="nombre" name="nombre" id="nombreMod" class="form-control" required>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" [(ngModel)]="password" class="form-control" id="passwordMod" name="password" required>
+
+      <label for="edad">Edad:</label>
+      <input type="number" [(ngModel)]="edad" name="edad" id="edadMod" class="form-control" required>
+
+      <label for="correo">Email:</label>
+      <input type="email" [(ngModel)]="correo" name="correo" id="correoMod" class="form-control" required>
+
+      <label for="idPosts">ID Posts:</label>
+      <input type="text" [(ngModel)]="idPosts" name="idPosts" id="postsMod" class="form-control" required readonly>
+
+      <button type="submit" class="btn btn-success mt-3">Actualizar</button>
+    </form>
+  </div>
+</div>
